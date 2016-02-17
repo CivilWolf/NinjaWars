@@ -12,6 +12,8 @@ float deltaTime = 0.0;
 int thisTime = 0;
 int lastTime = 0;
 
+#include "tank.h"
+
 
 #if defined(__APPLE__)
 #include <SDL2/SDL.h>
@@ -82,6 +84,11 @@ int main()
 	{
 		Mix_PlayMusic(bgm,-1);
 	}
+
+	Tank tank1 = Tank(renderer,0,images_dir.c_str(),audio_dir.c_str(),50.0f,50.0f);
+
+
+
 	while(!quit)
 	{
 		thisTime = SDL_GetTicks();
@@ -98,15 +105,15 @@ int main()
 		} // end Poll Events
 		// ********** Start Update Process**************
 		// *********** Start the SDL Draw Process **************
-
+		SDL_RenderClear(renderer);
+		//draw the player's tank
+		tank1.Draw(renderer);
+		//present new buffer to the screen
+		SDL_RenderPresent(renderer);
 
 	}// end Main Loop
 	SDL_DestroyWindow(window);
 	SDL_Quit();
-	return 0;
-
-
-
 	return 0;
 }
 
