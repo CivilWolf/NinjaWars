@@ -13,6 +13,7 @@ int thisTime = 0;
 int lastTime = 0;
 
 #include "tank.h"
+#include "turret.h"
 
 
 #if defined(__APPLE__)
@@ -85,7 +86,11 @@ int main()
 		Mix_PlayMusic(bgm,-1);
 	}
 
+	//Create Players - Start
 	Tank tank1 = Tank(renderer,0,images_dir.c_str(),audio_dir.c_str(),50.0f,50.0f);
+
+	//CreateTurrets - Start
+	Turret turret1 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),800.0f,500.0f);
 
 
 
@@ -102,12 +107,35 @@ int main()
 			{
 				quit = true;
 			}
+
+			switch(e.type)
+			{
+			case SDL_CONTROLLERBUTTONDOWN:
+				if(e.cdevice.which == 0)
+				{
+					if(e.cbutton.button == SDL_CONTROLLER_BUTTON_A)
+					{
+						tank1.OnControllerButton(e.cbutton);
+						break;
+					}
+				}
+			break;
+
+			case SDL_CONTROLLERAXISMOTION:
+				tank1.OnControllerAxis(e.caxis);
+				break;
+			}
+
 		} // end Poll Events
 		// ********** Start Update Process**************
+		tank1.Update(deltaTime);
+
 		// *********** Start the SDL Draw Process **************
 		SDL_RenderClear(renderer);
 		//draw the player's tank
 		tank1.Draw(renderer);
+		//Draw Turret
+		turret1.Draw(renderer);
 		//present new buffer to the screen
 		SDL_RenderPresent(renderer);
 

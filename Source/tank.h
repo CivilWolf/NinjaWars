@@ -22,11 +22,13 @@ using namespace std;
 #include "SDL2/SDL_ttf.h"
 #endif
 
+#include "tankbullet.h"
+
 class Tank {
 public:
 	bool active;
 
-	//vector<TankBullet> bulletList;
+	vector<TankBullet> bulletList;
 
 	string playerPath;
 
