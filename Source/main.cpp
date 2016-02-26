@@ -22,8 +22,8 @@ int lastTime = 0;
 #include "SDL2_mixer/SDL_mixer.h"
 #include "SDL2_ttf/SDL_ttf.h"
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory +"/Images/";
-string audio_dir = currentWorkingDirectory +"/Audio/";
+string images_dir = currentWorkingDirectory +"/Resources/Images/";
+string audio_dir = currentWorkingDirectory +"/Resources/Audio/";
 
 #endif
 #if defined(_WIN32)||(_WIN64)
@@ -35,8 +35,8 @@ string audio_dir = currentWorkingDirectory +"/Audio/";
 #define getcwd _getcwd
 
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory + "\\Images\\";
-string audio_dir = currentWorkingDirectory +"\\Audio\\";
+string images_dir = currentWorkingDirectory + "\\Resources\\Images\\";
+string audio_dir = currentWorkingDirectory +"\\Resources\\Audio\\";
 
 
 
@@ -51,8 +51,8 @@ string audio_dir = currentWorkingDirectory +"\\Audio\\";
 #include <unistd.h>
 
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory +"/Images/";
-string audio_dir = currentWorkingDirectory +"/Audio/";
+string images_dir = currentWorkingDirectory +"/Resources/Images/";
+string audio_dir = currentWorkingDirectory + "/Resources/Audio/";
 
 #endif
 
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	//CreateTurrets - Start
 	Turret turret1 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),800.0f,500.0f);
 
-
+	//
 
 	while(!quit)
 	{
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 		deltaTime= (float)(thisTime - lastTime)/ 1000;
 		lastTime = thisTime;
 
-
+		//cout << currentWorkingDirectory;
 		while(SDL_PollEvent(&e) !=0)
 		{
 			if(e.type == SDL_QUIT)
@@ -134,11 +134,11 @@ int main(int argc, char *argv[])
 		SDL_RenderClear(renderer);
 		//draw the player's tank
 		tank1.Draw(renderer);
+		//cout << audio_dir << endl;
 		//Draw Turret
 		turret1.Draw(renderer);
 		//present new buffer to the screen
 		SDL_RenderPresent(renderer);
-
 	}// end Main Loop
 	SDL_DestroyWindow(window);
 	SDL_Quit();

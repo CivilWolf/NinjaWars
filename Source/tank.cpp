@@ -16,6 +16,7 @@ Tank::Tank(SDL_Renderer*renderer,int pNum, string filePath,string audioPath, flo
 	{
 		playerPath = filePath + "blueTank.png";
 	}
+	//cout << playerPath;
 	texture = IMG_LoadTexture(renderer,playerPath.c_str());
 
 	posRect.x = x;
@@ -41,7 +42,7 @@ Tank::Tank(SDL_Renderer*renderer,int pNum, string filePath,string audioPath, flo
 	string bulletPath;
 	if(playerNum == 0)
 	{
-		bulletPath = filePath +"redBullet.png";
+		bulletPath = filePath + "redBullet.png";
 	}else
 	{
 		bulletPath = filePath + "blueBullet.png";
@@ -98,7 +99,7 @@ void Tank::Update(float deltaTime)
 
 	if(posRect.x < 0)
 	{
-		posRect.x < 0;
+		//posRect.x < 0;
 		pos_X = posRect.x;
 	}
 

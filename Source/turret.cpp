@@ -1,8 +1,10 @@
 #include "turret.h"
 //#include "turretbullet.h"
 
-Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float x, float y)
+Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float xx, float yy)
 {
+	x = xx;
+	y = yy;
 	active = true;
 	fire = Mix_LoadWAV((audioPath + "fire.wav").c_str());
 	string basePath = filePath + "turretBase.png";
@@ -27,7 +29,7 @@ Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float x, 
 	center.x = 12;
 	center.y = 12;
 
-	string bulletPath = filePath + "tBullet.png";
+	string bulletPath = filePath + "turretBullet.png";
 
 	for(int i = 0; i< 10;i++)
 	{
