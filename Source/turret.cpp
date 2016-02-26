@@ -1,4 +1,5 @@
 #include "turret.h"
+//#include "turretbullet.h"
 
 Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float x, float y)
 {
@@ -30,14 +31,14 @@ Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float x, 
 
 	for(int i = 0; i< 10;i++)
 	{
-		//TurretBullet tmpBullet(renderer,bulletPath , 500,500);
-		//bulletList.push_back(tmpBullet);
+		TurretBullet tmpBullet(renderer,bulletPath , 500,500);
+		bulletList.push_back(tmpBullet);
 	}
 	srand(time(NULL));
  }
 void Turret::Draw(SDL_Renderer*renderer)
 {
-	/*
+	
 	for(int i = 0; i <bulletList.size();i++)
 	{
 		if(bulletList[i].active)
@@ -45,7 +46,7 @@ void Turret::Draw(SDL_Renderer*renderer)
 			bulletList[i].Draw(renderer);
 		}
 	}
-	*/
+	
 	SDL_RenderCopy(renderer,tBase,NULL,&baseRect);
 	SDL_RenderCopyEx(renderer,tBarrel,NULL,&barrelRect,turretangle,&center,SDL_FLIP_NONE);
 }
@@ -62,7 +63,7 @@ void Turret::Update(float deltaTime,SDL_Rect tankRect)
 		CreateBullet(tankRect);
 		fireTime = SDL_GetTicks()+(rand()%3 +1)*1000;
 	}
-	/*
+	
 	 for(int i = 0; i < bulletList.size();i++)
 	 {
 	 if(bulletList[i].active)
@@ -70,5 +71,26 @@ void Turret::Update(float deltaTime,SDL_Rect tankRect)
 	 	 bulletList[i].Update(deltaTime);
 	 }
 	 }
-	*/
+	
+}
+
+void Turret::CreateBullet(SDL_Rect target)
+{
+	for (int i = 0; i < bulletList.size(); i++)
+	{
+		if (bulletList[i].active == false)
+		{
+			bulletList[i].Start(target, baseRect);
+			Mix_PlayChannel(-1, fire, 0);
+			bulletList[i].active = true;
+
+			bulletList[i].posRect.x = ((baseRect.x + (baseRect.w / 2)) - (bulletList[i].posRect.w / 2));
+			bulletList[i].posRect.y = ((baseRect.y + (baseRect.h / 2)) - (bulletList[i].posRect.h / 2));
+
+			bulletList[i].pos_X = bulletList[i].posRect.x;
+			bulletList[i].pos_Y = bulletList[i].posRect.y;
+
+			break;
+		}
+	}
 }

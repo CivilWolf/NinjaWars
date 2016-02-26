@@ -22,8 +22,8 @@ int lastTime = 0;
 #include "SDL2_mixer/SDL_mixer.h"
 #include "SDL2_ttf/SDL_ttf.h"
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory +"/source/";
-string audio_dir = currentWorkingDirectory +"/source/";
+string images_dir = currentWorkingDirectory +"/Images/";
+string audio_dir = currentWorkingDirectory +"/Audio/";
 
 #endif
 #if defined(_WIN32)||(_WIN64)
@@ -35,8 +35,8 @@ string audio_dir = currentWorkingDirectory +"/source/";
 #define getcwd _getcwd
 
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory + "\\source\\";
-string audio_dir = currentWorkingDirectory +"\\source\\";
+string images_dir = currentWorkingDirectory + "\\Images\\";
+string audio_dir = currentWorkingDirectory +"\\Audio\\";
 
 
 
@@ -51,12 +51,12 @@ string audio_dir = currentWorkingDirectory +"\\source\\";
 #include <unistd.h>
 
 string currentWorkingDirectory(getcwd(NULL,0));
-string images_dir = currentWorkingDirectory +"/source/";
-string audio_dir = currentWorkingDirectory +"/source/";
+string images_dir = currentWorkingDirectory +"/Images/";
+string audio_dir = currentWorkingDirectory +"/Audio/";
 
 #endif
 
-int main()
+int main(int argc, char *argv[])
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window *window = NULL;
@@ -79,7 +79,7 @@ int main()
 	SDL_GameController* gGameController0 = NULL;
 	gGameController0 = SDL_GameControllerOpen(0);
 	Mix_OpenAudio(4410,MIX_DEFAULT_FORMAT,2,2048);
-	Mix_Music *bgm = Mix_LoadMUS((audio_dir + "background.mp3").c_str());
+	Mix_Music *bgm = Mix_LoadMUS((audio_dir + "background.wav").c_str());
 
 	if(!Mix_PlayingMusic())
 	{

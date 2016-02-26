@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <time.h>
 
 using namespace std;
 #include <vector>
@@ -23,14 +24,14 @@ using namespace std;
 #include "SDL2/SDL_ttf.h"
 #endif
 
-//#include "turretbullet.h"
+#include "turretbullet.h"
 
 class Turret
 {
 public:
 	bool active;
 
-	//vector <TurretBullet> bulletList;
+	vector <TurretBullet> bulletList;
 	string turretPath;
 	SDL_Texture*tBase;
 	SDL_Texture*tBarrel;

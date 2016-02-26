@@ -28,6 +28,8 @@ public:
 	float speed;
 
 	float pos_X,pos_Y;
+	
+	
 
 	TankBullet(SDL_Renderer*renderer,string filePath, float x, float y,int dirX,int dirY);
 
