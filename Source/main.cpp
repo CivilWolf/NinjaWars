@@ -92,6 +92,11 @@ int main(int argc, char *argv[])
 	//CreateTurrets - Start
 	Turret turret1 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),800.0f,500.0f);
 
+	Turret turret2 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),1600.0f,250.0f);
+	Turret turret2 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),400.0f,1000.0f);
+	Turret turret2 = Turret(renderer,images_dir.c_str(),audio_dir.c_str(),1600.0f,1250.0f);
+
+	SDL_Texture *bkgd = IMG_LoadTexture(renderer)
 	//
 
 	while(!quit)

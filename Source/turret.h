@@ -33,6 +33,7 @@ public:
 
 	vector <TurretBullet> bulletList;
 	string turretPath;
+	string barrelPath;
 	SDL_Texture*tBase;
 	SDL_Texture*tBarrel;
 	SDL_Rect baseRect;
@@ -50,5 +51,9 @@ public:
 	void Draw(SDL_Renderer*renderer);
 	void Reset();
 	void CreateBullet(SDL_Rect target);
+
+	void TankMoveX(float tankSpeed, float deltaTime);
+	void TankMoveY(float tankSpeed, float deltaTime);
+
 
 };

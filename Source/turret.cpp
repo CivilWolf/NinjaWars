@@ -16,8 +16,9 @@ Turret::Turret(SDL_Renderer*renderer,string filePath, string audioPath,float xx,
 	SDL_QueryTexture(tBase,NULL,NULL,&w,&h);
 	baseRect.w = w;
 	baseRect.h = h;
+	string barrelPath = filePath + "turretBarrel.png";
 
-
+	tBarrel = IMG_LoadTexture(renderer, barrelPath.c_str());
 	barrelRect.x = x +34;
 	barrelRect.y = y +34;
 
